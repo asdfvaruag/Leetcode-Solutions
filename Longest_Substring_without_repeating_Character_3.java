@@ -3,17 +3,19 @@ import java.util.Map;
 
 public class Longest_Substring_without_repeating_Character_3 {
     public int lengthOfLongestSubstring(String s) {
-        //! Failed not working
-    /*     String[] l = s.split("");
-        int count = 1;
-        for (int i = 0; i < l.length; i++) {
-
-        if (l[0].equalsIgnoreCase(l[i + 1])) {
-        return count;
-        }
-        count++;
-        }
-        return count; */
+        // ! Failed not working
+        /*
+         * String[] l = s.split("");
+         * int count = 1;
+         * for (int i = 0; i < l.length; i++) {
+         * 
+         * if (l[0].equalsIgnoreCase(l[i + 1])) {
+         * return count;
+         * }
+         * count++;
+         * }
+         * return count;
+         */
 
         // Map<Character, Integer> map = new HashMap<>();
         // int i = 0;
