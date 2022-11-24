@@ -1,18 +1,22 @@
 public class sort_array_put_0_end {
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 0, 4, 3, 0, 5, 0 };
-        int n = arr.length;
-        int count = 0;
+        int[] a = { 0, 1, 0, 3, 12 };
+        int n = a.length;
         for (int i = 0; i < n; i++) {
-            if (arr[i] != 0) {
-                arr[count++] = arr[i];
+            if (a[i] == 0) {
+                for (int j = i + 1; j < n; j++) {
+                    if (a[j] != 0) {
+                        int temp = a[i];
+                        a[i] = a[j];
+                        a[j] = temp;
+                        break;
+                    }
+                }
             }
         }
-        while (count < n) {
-            arr[count++] = 0;
-        }
         for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + ",");
+            System.out.print(a[i] + ",");
         }
     }
+
 }
