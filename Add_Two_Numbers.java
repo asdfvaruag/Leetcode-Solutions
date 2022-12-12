@@ -1,64 +1,47 @@
-import java.util.Arrays;
-
-import static java.lang.Integer.parseInt;
+import java.util.*;
 
 public class Add_Two_Numbers {
-    public static void main(String[] args) {
-        // ?You are given two non-empty linked lists representing two non-negative
-        // integers. The digits are stored in reverse order, and each of their nodes
-        // contains a single digit. Add the two numbers and return the sum as a linked
-        // list.
-        // ?You may assume the two numbers do not contain any leading zero, except the
-        // number 0 itself.
-
-        // class Solution {
-        // * Add Two Numbers (Java improved)
-        // public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        // ListNode dummyHead = new ListNode(0);
-        // ListNode curr = dummyHead;
-        // int carry = 0;
-        // while (l1 != null || l2 != null || carry != 0) {
-        // int x = (l1 != null) ? l1.val : 0;
-        // int y = (l2 != null) ? l2.val : 0;
-        // int sum = carry + x + y;
-        // carry = sum / 10;
-        // curr.next = new ListNode(sum % 10);
-        // curr = curr.next;
-        // if (l1 != null)
-        // l1 = l1.next;
-        // if (l2 != null)
-        // l2 = l2.next;
-        // }
-        // return dummyHead.next;
-        // }
-        // }
-
-        int[] a1 = { 2, 4, 3 };
-        int[] a2 = { 5, 6, 4 };
-        // convert array into string without space
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < a1.length; i++) {
-            sb.append(a1[i]);
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Stack<Integer> st1 = new Stack<>();
+        Stack<Integer> st2 = new Stack<>();
+        while (l1 != null) {
+            st1.push(l1.val);
+            l1 = l1.next;
         }
-        int a = parseInt(sb.toString());
-        System.out.println(a);
-        StringBuilder sb1 = new StringBuilder();
-        for (int i = 0; i < a2.length; i++) {
-            sb1.append(a2[i]);
+        while (l2 != null) {
+            st2.push(l2.val);
+            l2 = l2.next;
         }
-        int b = parseInt(sb1.toString());
-        System.out.println(b);
-        int c = a + b;
-        // split int element into array element
-        // int[] arr = new int[c];
-        int[] arr;
-        System.out.println(c);
-        // int i = 0;
-        // while (i < a) {
-        // arr[i] = a1[i];
-        // i++;
-        // }
-
+        int carry = 0;
+        ListNode head = null;
+        while (st1.size() > 0 || st2.size() > 0 || carry > 0) {
+            int sum = carry;
+            if (st1.size() > 0) {
+                sum += st1.pop();
+            }
+            if (st2.size() > 0) {
+                sum += st2.pop();
+            }
+            ListNode node = new ListNode(sum % 10);
+            node.next = head;
+            head = node;
+            carry = sum / 10;
+        }
+        return head;
     }
 
+    public static void main(String[] args) {
+        Add_Two_Numbers obj = new Add_Two_Numbers();
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+        ListNode ans = obj.addTwoNumbers(l1, l2);
+        while (ans != null) {
+            System.out.print(ans.val + " ");
+            ans = ans.next;
+        }
+    }
 }

@@ -17,13 +17,10 @@
       let right1 = cut1 === nums1.length ? Infinity : nums1[cut1]
       let right2 = cut2 === nums2.length ? Infinity : nums2[cut2]
       if(left1 > right2) {
-        // move left, reduce left1
         high = cut1
       } else if(left2 > right1) {
-        // move right, reduce right1
         low = cut1 + 1
       } else {
-        // found the solution
         const isOdd = (nums1.length + nums2.length) % 2 !== 0
         if(isOdd) {
           return Math.max(left1, left2)
